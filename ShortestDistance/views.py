@@ -1,10 +1,12 @@
-import ShortestDistance.PathCalculator as pathCalc
-import pandas as pd
-from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
-import GoogleMaps.settings as stt
 import os
+
+import pandas as pd
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
 from selenium import webdriver
+
+import GoogleMaps.settings as stt
+import ShortestDistance.PathCalculator as pathCalc
 
 
 # Create your views here.
