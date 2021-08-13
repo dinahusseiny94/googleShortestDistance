@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GoogleMaps</title>
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.css' %}">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav class="nav-tabs alert alert-info">
+<span class="">Google Maps Shortest Path</span>
+</nav>
+<div class="container">
+
+<div class="well well-lg" style="width: 80%;margin-left: 10%;margin-top: 10%;">
+
+<form method="post" action="{% url 'ShortestPath' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+      <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Output Filename</label>
+        <input type="text" class="form-control" id="outputFileName" aria-describedby="emailHelp" name="outputFileName">
+  </div>
+
+
+      <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Source Location</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="location">
+          <label for="exampleInputPassword1" class="form-label">Destinations csv Path</label>
+    <input type="file" id="exampleInputPassword1" name="document" accept="text/csv">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+    </div>
+</div>
+</body>
+</html>
