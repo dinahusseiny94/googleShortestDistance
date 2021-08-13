@@ -30,14 +30,10 @@ cloudpickle==1.2.2
 colorama==0.4.1
 conda==4.3.16
 conda-build
-conda-package-handling
-conda-verify
 configparser
 contextlib2
 crayons
 cryptography
-cycler
-Cython
 cytoolz
 dask
 decorator
