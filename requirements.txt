@@ -2,3 +2,4 @@ pandas==0.25.1
 selenium==3.141.0
 Django==2.1.3
 cython==0.29.24
+pycurl==7.19.3.1
