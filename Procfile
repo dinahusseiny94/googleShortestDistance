@@ -1,1 +1,1 @@
-web: python manage.py --reload
+web: python manage.py
