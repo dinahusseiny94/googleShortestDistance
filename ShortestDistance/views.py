@@ -20,7 +20,6 @@ def ShortestPath(request):
     shortestRouteTitle = []
     shortestRouteDistance = []
 
-    outputFileName = request.POST["outputFileName"]
     source_location = request.POST["location"]
     uploaded_file = request.FILES['document']
     fs = FileSystemStorage()
@@ -32,9 +31,6 @@ def ShortestPath(request):
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
     chrome = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
     for target_location in target_locations['Target Locations']:
@@ -50,9 +46,5 @@ def ShortestPath(request):
          'Route Distance in KMs': output_df['shortestRouteDistance']
          })
 
-    output_filename = outputFileName + '.csv'
-    output_path = os.path.join(BASE_DIR, output_filename)
-
-    df.to_csv(output_path, index=False, header=True, encoding='utf-8-sig')
-    context = {"result": df.to_html(), 'url': output_path}
+    context = {"result": df.to_html()}
     return render(request, 'Distances.html', context)
