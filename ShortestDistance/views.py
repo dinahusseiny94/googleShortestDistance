@@ -30,7 +30,12 @@ def ShortestPath(request):
     target_locations = pd.read_csv(path)
     output_df = pd.DataFrame
 
-    chrome = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    chrome = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
     for target_location in target_locations['Target Locations']:
         output_df = pathCalc.find(chrome, source_location, target_location, sourceLocation, targetLocation
