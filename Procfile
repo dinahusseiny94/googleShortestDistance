@@ -1,1 +1,2 @@
-web: python manage.py runserver
+web: gunicorn GoogleMaps.wsgi --log-file -
+release: python manage.py migrate
