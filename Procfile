@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --no-input; gunicorn GoogleMaps.wsgi --log-file - --log-level debug
+web: python manage.py collectstatic --no-input; gunicorn GoogleMaps.wsgi
