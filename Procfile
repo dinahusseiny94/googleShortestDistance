@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --no-input; gunicorn GoogleMaps.wsgi
+web: python manage.py ; gunicorn GoogleMaps.wsgi
