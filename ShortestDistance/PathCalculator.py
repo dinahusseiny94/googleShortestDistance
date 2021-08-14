@@ -1,7 +1,10 @@
 from time import sleep
+from django.shortcuts import render
+import pandas as pd
 
 
-def find(chrome,source_location,destination,sourceLocation,targetLocation,shortestRouteTitle,shortestRouteDistance):
+def find(request, chrome, source_location, destination, sourceLocation, targetLocation, shortestRouteTitle,
+         shortestRouteDistance):
     sleep(2)
     chrome.get("https://www.google.com/maps/dir/" + source_location)
     minDistance = 10000
@@ -47,6 +50,12 @@ def find(chrome,source_location,destination,sourceLocation,targetLocation,shorte
     shortestRouteTitle.append(routeTitleCol[minIndex])
     dict_result = {"sourceLocation": sourceLocation, "targetLocation": targetLocation,
                    "shortestRouteDistance": shortestRouteDistance, "shortestRouteTitle": shortestRouteTitle}
-    return dict_result
+    df = pd.DataFrame(
+        {'Source Location': dict_result['sourceLocation'],
+         'Target Location': dict_result['targetLocation'],
+         'Route Name': dict_result['shortestRouteTitle'],
+         'Route Distance in KMs': dict_result['shortestRouteDistance']
+         })
 
-
+    context = {"result": df.to_html()}
+    return render(request, 'Distances.html', context)
